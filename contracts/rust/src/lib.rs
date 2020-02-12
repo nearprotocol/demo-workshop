@@ -26,19 +26,8 @@ pub trait ExtGuestbook {
 impl CrossContract {
 
     pub fn add_message(&mut self, account_id: String, text: String) {
-        ext_guestbook::addMessage(text, &account_id, 0, 1000000000000000000);
     }
 
     pub fn add_and_return_messages(&mut self, account_id: String, text: String) -> Promise {
-        // 1) call guestbook to record a message from the signer.
-        // 2) call guestbook to retrieve all messages.
-        // 3) return messages as the result.
-        ext_guestbook::addMessage(text, &account_id, 0, 1000000000000000000).then(
-            ext_guestbook::getMessages(
-                &account_id,
-                0,
-                1000000000000000000,
-            ),
-        )
     }
 }

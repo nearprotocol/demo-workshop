@@ -23,6 +23,16 @@ npm i -g near-shell
 npm i -g yarn
 ```
 
+To develop Rust contracts you would need to:
+* Install [Rustup](https://rustup.rs/):
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+* Add wasm target to your toolchain:
+```bash
+rustup target add wasm32-unknown-unknown
+```
+
 #### Project Structure
 ```
 contracts/
