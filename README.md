@@ -8,7 +8,7 @@
 <br />
 <br />
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/kcole16/ethdenver-workshop)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/nearprotocol/ethdenver-workshop)
 
 ## Messaging app on NEAR with AssemblyScript and Rust
 ### Requirements
