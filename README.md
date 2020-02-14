@@ -192,10 +192,10 @@ near create_account <accountId>
 
 Deploy the contract
 ```
-near deploy --accountId <accountId> --wasmFile=./rust/res/call_guestbook.wasm --masterAccount <masterAccountName>
+near deploy --accountId <accountId> --wasmFile=./contracts/rust/res/call_guestbook.wasm --masterAccount <masterAccountName>
 ```
 
 #### Step 3: Interacting with the Rust contract
 ```
-near call <accountId> add_and_return_messages "{\"account_id\": \"dev-1581444152742\",\"text\":\"yoyoa\"}" --accountId demodenver --gas 10000000000000000000
+near call <accountId> add_and_return_messages "{\"account_id\": \"dev-1581444152742\",\"text\":\"yoyoa\"}" --accountId ethdenverdemo --gas 10000000000000000000
 ```
