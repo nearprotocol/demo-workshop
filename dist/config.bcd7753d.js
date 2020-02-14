@@ -118,7 +118,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"config.js":[function(require,module,exports) {
-var CONTRACT_NAME = "dev-1581444152742" || 'testdenv';
+var CONTRACT_NAME = "dev-1581625728857" || 'testdenv';
 /* TODO: fill this in! */
 
 function getConfig(env) {
@@ -210,7 +210,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59014" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49348" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
