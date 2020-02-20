@@ -58,7 +58,7 @@ README.md
 
 #### Writing the AssemblyScript contracts
 Define the message type in `assembly/model.ts`
-```
+```ts
 export class PostedMessage {
     sender: string;
     text: string;
@@ -67,7 +67,7 @@ export class PostedMessage {
 ```
 
 Import the type into `main.ts` along with a persistent data structure and `context`, which provides access to information like `sender`.
-```
+```ts
 import { context, PersistentVector } from "near-runtime-ts";
 
 import { PostedMessage } from "./model";
@@ -75,13 +75,13 @@ import { PostedMessage } from "./model";
 
 Define `messages` and create a new `PersistentVector`, similar to an array, made up of `PostedMessage` objects.
 
-```
+```ts
 let messages = new PersistentVector<PostedMessage>("m");
 ```
 
 Next, let's create a change method `addMessage` to add a new message to `messages` and store the new state.
 
-```
+```ts
 export function addMessage(text: string): void {
   // Creating a new message and populating fields with our data
   let message: PostedMessage = {
@@ -96,7 +96,7 @@ export function addMessage(text: string): void {
 
 Finally, create a view method `getMessages`, which retrieves and returns the latest state of `messages`
 
-```
+```ts
 export function getMessages(): Array<PostedMessage> {
   let numMessages = min(MESSAGE_LIMIT, messages.length);
   let startIndex = messages.length - numMessages;
@@ -115,7 +115,7 @@ npm run dev
 
 #### Write the Rust contracts 
 Setup the contract structure in `rust/lib.rs`
-```
+```rust
 use borsh::{BorshDeserialize, BorshSerialize};
 use near_bindgen::{
     env,
@@ -134,7 +134,7 @@ pub struct CrossContract {}
 ```
 
 Add the interface of the AssemblyScript contract
-```
+```rust
 #[ext_contract]
 pub trait ExtGuestbook {
     fn addMessage(&mut self, text: String);
@@ -144,7 +144,7 @@ pub trait ExtGuestbook {
 
 Create the contract implementation
 
-```
+```rust
 #[near_bindgen]
 impl CrossContract {
 }
@@ -152,7 +152,7 @@ impl CrossContract {
 
 Inside the implementation, create a function to call the guestbook contract's `addMessage` function
 
-```
+```rust
 pub fn add_message(&mut self, account_id: String, text: String) {
     ext_guestbook::addMessage(text, &account_id, 0, 1000000000000000000);
 }
@@ -160,7 +160,7 @@ pub fn add_message(&mut self, account_id: String, text: String) {
 
 And to add a message, then return the new message state using a promise
 
-```
+```rust
 pub fn add_and_return_messages(&mut self, account_id: String, text: String) -> Promise {
     // 1) call guestbook to record a message from the signer.
     // 2) call guestbook to retrieve all messages.
